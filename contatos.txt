@@ -1,0 +1,2 @@
+fulano,f@f.com
+sicrano,s@s.com
