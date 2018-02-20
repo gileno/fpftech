@@ -41,24 +41,28 @@ class Recompensa(Ponto):
     def __str__(self):
         return '%s <%s, %s>' % (self.nome, self.x, self.y)
 
-
 recompensas = []
 nomes = ['moeda', 'gasolina', 'arma']
 for i in range(10):
     r = Recompensa(random.choice(nomes), random.randint(0, 9), random.randint(0, 9))
     recompensas.append(r)
     print(r)
-
 robo1 = Robo(random.randint(0, 9), random.randint(0, 9))
 
 def checar_recompensa(robo, recompensas):
     """
     Imprime o nome da recompensa caso tenha encontrado
     """
-    pass
+    encontrou = False
+    for r in recompensas:
+        if r.x == robo.x and r.y == robo.y:
+            print("Recompensa encontrada:", r.nome)
+            encontrou = True
+    if not encontrou:
+        print('Nenhuma recompensa encontrada')
 
 while True:
-    movimento = input("Onde deseja ir? digite 'sair' para terminar")
+    movimento = input("Onde deseja ir? digite 'sair' para terminar ")
     if movimento == 'subir':
         robo1.subir()
     elif movimento == 'descer':
