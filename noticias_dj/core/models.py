@@ -20,6 +20,9 @@ class Noticia(models.Model):
     categoria = models.ForeignKey(
         Categoria, models.SET_NULL, verbose_name='Categoria', null=True
     )
+    usuario = models.ForeignKey(
+        'auth.User', models.SET_NULL, verbose_name='Usuário', null=True
+    )
     publicacao = models.DateField('Publicação', null=True, blank=True)
     conteudo = models.TextField('Conteúdo')
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
