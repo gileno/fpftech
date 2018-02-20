@@ -9,5 +9,8 @@ class Noticia(models.Model):
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     modificado_em = models.DateTimeField('Modificado em', auto_now=True)
 
+    def __str__(self):
+        return self.titulo
+
     class Meta:
         db_table = 'noticias'
