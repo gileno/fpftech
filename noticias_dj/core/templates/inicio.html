@@ -46,7 +46,7 @@
           <div class="row">
             {% for noticia in noticias %}
             <div class="col-md-4">
-              <h3>{{ noticia.titulo }}</h3>
+              <h3><a href="{% url 'noticia' noticia.pk %}">{{ noticia.titulo }}</a></h3>
             </div>
             {% endfor %}
           </div>
