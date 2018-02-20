@@ -26,13 +26,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Mercado Livre - Notícias</a>
+          <a class="navbar-brand" href="/">FPFTech - Notícias</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Início</a></li>
-            <li><a href="/noticias/cadastrar/">Cadastrar Notícia</a></li>
-            <li><a href="/categorias/cadastrar/">Cadastrar Categoria</a></li>
+            <li><a href="">Cadastrar Notícia</a></li>
+            <li><a href="">Cadastrar Categoria</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -43,23 +43,18 @@
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
-          {% block conteudo %}
           <div class="row">
             {% for noticia in noticias %}
-            <div class="col-xs-6 col-lg-4">
-              <h2>{{ noticia['titulo'] }}</h2>
-              <p><a class="btn btn-default" href="/noticias/{{ noticia['id'] }}" role="button">Ler mais &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-md-4">
+              <h1>{{ noticia }}</h1>
+            </div>
             {% endfor %}
-          </div><!--/row-->
-          {% endblock %}
+          </div>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
-            {% for categoria in todas_categorias %}
-            <a href="/categorias/{{ categoria.id }}" class="list-group-item">{{ categoria.titulo }}</a>
-            {% endfor %}
+            <a href="">Categoria</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
@@ -67,7 +62,7 @@
       <hr>
 
       <footer>
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; Company, Inc.</p>
       </footer>
 
     </div><!--/.container-->
