@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+
+class IndexView(object):
+
+    def __call__(self, request):
+        return HttpResponse('Index View')
+
+
+index = IndexView()
