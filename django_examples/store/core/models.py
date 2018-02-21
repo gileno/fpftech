@@ -1,5 +1,9 @@
 from django.db import models
 
+from notifications.signals import notification_created
+
+from .mail import send_mail_notification
+
 
 class BaseModel(models.Model):
 
@@ -8,3 +12,6 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+notification_created.connect(send_mail_notification)
