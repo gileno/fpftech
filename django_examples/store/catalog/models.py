@@ -6,6 +6,9 @@ from core.models import BaseModel
 class Category(BaseModel):
 
     name = models.CharField('Nome', max_length=100)
+
+    def __str__(self):
+        return self.name
     
     class Meta:
         verbose_name = 'Categoria'
@@ -19,6 +22,9 @@ class Product(BaseModel):
     categories = models.ManyToManyField(
         Category, related_name='products', blank=True
     )
+
+    def __str__(self):
+        return self.name
     
     class Meta:
         verbose_name = 'Produto'
