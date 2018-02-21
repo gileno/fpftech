@@ -26,6 +26,16 @@ class Product(BaseModel):
         Category, related_name='products', blank=True
     )
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'categories': [c.id for c in self.categories.all()],
+            'quantity': self.quantity,
+        }
+
     def __str__(self):
         return self.name
     
