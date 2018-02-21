@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'created', 'modified']
+    list_display = ['name', 'quantity', 'created', 'modified']
     search_fields = ['name']
 
 
