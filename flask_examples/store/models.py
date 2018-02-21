@@ -11,10 +11,7 @@ class Category(db.Model):
     
     @property
     def serialize(self):
-        return {
-            'id': self.id,
-            'name': self.name
-        }
+        return {'id': self.id, 'name': self.name}
 
 
 class Product(db.Model):
@@ -28,3 +25,12 @@ class Product(db.Model):
     category = db.relationship(
         'Category', backref=db.backref('products', lazy=True)
     )
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id, 
+            'name': self.name, 
+            'description': self.description,
+            'category': self.category.name
+        }

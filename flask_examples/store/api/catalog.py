@@ -13,7 +13,7 @@ class ProductAPI(MethodView):
         if product_id:
             return jsonify(Product.query.filter_by(id=product_id).first().serialize)
         else:
-            return jsonify(json_list=[p.serialize for p in Product.query.all()])
+            return jsonify(results=[p.serialize for p in Product.query.all()])
 
 
 product_view = ProductAPI.as_view('product_api')
