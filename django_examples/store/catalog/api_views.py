@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import ProductModelSerializer
 from .models import Product
@@ -36,5 +38,8 @@ class ProductAPIView(ListCreateAPIView):
 
 class ProductRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = ProductModelSerializer
     lookup_url_kwarg = 'id'
+    queryset = Product.objects.all()
