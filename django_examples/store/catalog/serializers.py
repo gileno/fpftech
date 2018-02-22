@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Product
+from .models import Product, Category
 
 
 class ProductModelSerializer(serializers.ModelSerializer):
@@ -22,3 +22,10 @@ class ProductSerializer(serializers.Serializer):
         if 'DRF' in value:
             raise serializers.ValidationError('Não pode conter DRF')
         return value
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'created', 'modified']

@@ -6,7 +6,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from .serializers import ProductModelSerializer
+from .serializers import ProductModelSerializer, CategorySerializer
 from .models import Product
 
 
@@ -53,4 +53,8 @@ class ProductViewSet(ModelViewSet):
 
     @detail_route(['GET'])
     def categories(self, request, pk=None):
-        return Response(['categoria 1', 'categoria 2'])
+        product = Product.objects.get(pk=pk)
+        serializer = CategorySerializer(
+            product.categories.all(), many=True
+        )
+        return Response(serializer.data)
