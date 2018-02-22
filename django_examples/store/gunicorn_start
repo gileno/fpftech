@@ -5,7 +5,7 @@ DJANGODIR=/home/ubuntu/store
 SOCKFILE=/home/ubuntu/run/gunicorn.sock
 USER=ubuntu
 NUM_WORKERS=3
-DJANGO_SETTINGS_MODULE=store.settings_prod
+DJANGO_SETTINGS_MODULE=store.settings
 DJANGO_WSGI_MODULE=store.wsgi
 
 echo "Starting $NAME as `whoami`"
