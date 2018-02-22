@@ -1,5 +1,7 @@
 from django.urls import path
 
+from rest_framework.routers import DefaultRouter
+
 from . import views
 from . import api_views
 
@@ -16,3 +18,8 @@ urlpatterns = [
         api_views.ProductRetrieveUpdateDestroyAPIView.as_view(), name='products_api'
     ),
 ]
+
+
+router = DefaultRouter()
+router.register('api2/products', api_views.ProductViewSet, base_name='product')
+urlpatterns = urlpatterns + router.urls

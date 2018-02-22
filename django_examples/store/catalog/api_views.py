@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, detail_route
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 
 from .serializers import ProductModelSerializer
 from .models import Product
@@ -43,3 +44,13 @@ class ProductRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProductModelSerializer
     lookup_url_kwarg = 'id'
     queryset = Product.objects.all()
+
+
+class ProductViewSet(ModelViewSet):
+
+    queryset = Product.objects.active()
+    serializer_class = ProductModelSerializer
+
+    @detail_route(['GET'])
+    def categories(self, request, pk=None):
+        return Response(['categoria 1', 'categoria 2'])
