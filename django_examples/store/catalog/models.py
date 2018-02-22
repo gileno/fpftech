@@ -8,6 +8,7 @@ from core.models import BaseModel
 class Category(BaseModel):
 
     name = models.CharField('Nome', max_length=100)
+    active = models.BooleanField('Ativo', default=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -17,14 +18,26 @@ class Category(BaseModel):
         verbose_name_plural = 'Categorias'
 
 
+class ProductQuerySet(models.QuerySet):
+
+    def active(self):
+        return self.filter(active=True)
+    
+    def search(self, q):
+        return self.filter(name__icontains=q)
+
+
 class Product(BaseModel):
 
     name = models.CharField('Nome', max_length=100)
     description = models.TextField('Descrição')
     quantity = models.PositiveIntegerField('Quantidade', default=0)
+    active = models.BooleanField('Ativo', default=True, blank=True)
     categories = models.ManyToManyField(
         Category, related_name='products', blank=True
     )
+
+    objects = ProductQuerySet.as_manager()
 
     @property
     def serialize(self):

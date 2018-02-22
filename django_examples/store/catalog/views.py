@@ -6,6 +6,7 @@ from django.views.generic import View
 from django.views.decorators import csrf
 
 from .models import Product, Category
+from .serializers import ProductModelSerializer
 
 
 @csrf.csrf_exempt
@@ -37,9 +38,11 @@ class ProductAPI(View):
     def get(self, request, product_id=None):
         if product_id:
             product = get_object_or_404(Product, id=product_id)
-            data = json.dumps(product.serialize)
+            serializer = ProductModelSerializer(product)
+            data = json.dumps(serializer.data)
         else:
-            data = json.dumps([p.serialize for p in Product.objects.all()])
+            serializer = ProductModelSerializer(Product.objects.all(), many=True)
+            data = json.dumps(serializer.data)
         return HttpResponse(data, content_type='application/json')
 
     def post(self, request):
