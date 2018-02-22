@@ -7,7 +7,7 @@ class CatalogConfig(AppConfig):
     name = 'catalog'
     verbose_name = 'Catálogo'
 
-    def ready(self):
-        if settings.DEBUG:
-            print("DEBUG")
-        print("inicializando...")
+    # def ready(self):
+    #     if settings.DEBUG:
+    #         print("DEBUG")
+    #     print("inicializando...")

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'catalog',
     'notifications',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +110,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # E-mail
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# User
+AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailModelBackend',
+]
