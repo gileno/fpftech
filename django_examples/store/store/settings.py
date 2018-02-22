@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'catalog',
     'notifications',
     'accounts',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
