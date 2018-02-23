@@ -21,6 +21,6 @@ class UserViewSet(ModelViewSet):
             permission_classes = [AllowAny]
         elif self.action in ['update', 'partial_update']:
             permission_classes = [IsAuthenticated, IsAdminOrSelf]
-        elif self.action == 'delete':
+        elif self.action == 'destroy':
             permission_classes = [IsAuthenticated, IsAdminOrSelf]
         return [permission() for permission in permission_classes]

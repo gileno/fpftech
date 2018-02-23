@@ -9,7 +9,11 @@ class IsAdminOrSelf(BasePermission):
         if request.user.is_staff:
             return True
         else:
-            return request.user == obj
+            if hasattr(obj, 'user'):
+                user = obj.user
+            else:
+                user = obj
+            return request.user == user
 
 
 class IsAdminOrReadOnly(BasePermission):

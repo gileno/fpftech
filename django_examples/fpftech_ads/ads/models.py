@@ -18,6 +18,7 @@ class Ad(models.Model):
     )
     category = models.ForeignKey(
         'Category', models.SET_NULL, blank=False, null=True,
+        verbose_name='Categoria',
     )
     description = models.TextField('Descrição')
     offer_type = models.CharField(
