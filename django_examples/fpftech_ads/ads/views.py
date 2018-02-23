@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import filters
 
 from accounts.permissions import IsAdminOrReadOnly, IsAdminOrSelf
 
@@ -18,6 +19,8 @@ class AdViewSet(ModelViewSet):
 
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['$title', '$category__title', '$description']
     
     def get_permissions(self):
         permission_classes = []
