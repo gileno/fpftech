@@ -1,6 +1,10 @@
+import random
+
 from django.db import models
 from django.conf import settings
 from django.urls import reverse, reverse_lazy
+
+from templated_email import send_templated_mail
 
 from accounts.models import User
 
@@ -24,8 +28,23 @@ class Ad(models.Model):
     offer_type = models.CharField(
         'Tipo da Oferta', max_length=10, choices=OFFER_TYPE_CHOICES
     )
+    rank = models.IntegerField('Rank', default=0)
     created = models.DateTimeField('Criada em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
+
+    def interest(self, email):
+        send_templated_mail(
+            template_name='interest',
+            from_email=email,
+            recipient_list=[self.user.email],
+            context={
+                'ad': self,
+                'email': email,
+            },
+        )
+    
+    class Meta:
+        ordering = ['rank']
 
 
 class Category(models.Model):
@@ -40,3 +59,9 @@ class Category(models.Model):
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
         ordering = ['title']
+
+
+def update_ad_rank():
+    for ad in Ad.objects.all():
+        ad.rank = random.randint(1, 100)
+        ad.save()

@@ -129,3 +129,23 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+# Celery
+from celery.schedules import crontab
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json' 
+CELERY_BEAT_SCHEDULE = {
+    'update_ad_rank': {
+        'task': 'ads.tasks.update_ad_rank_task',
+        'schedule': crontab("*")
+    },
+}
+
+# E-mail
+TEMPLATED_EMAIL_TEMPLATE_DIR = 'emails/'
+TEMPLATED_EMAIL_FILE_EXTENSION = 'html'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
