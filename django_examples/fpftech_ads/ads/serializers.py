@@ -19,3 +19,8 @@ class AdSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['user', 'rank']
         model = Ad
+
+
+class InterestSerializer(serializers.Serializer):
+
+    email = serializers.EmailField()
